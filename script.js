@@ -82,7 +82,7 @@ function resize() {
 resize();
 window.addEventListener('resize', resize);
 
-const COLORS = ['#E9CE7A', '#C9A227', '#E8B4B8', '#F8DEDC', '#ffffffaa'];
+const COLORS = ['#C99A4A', '#C25A6B', '#DD8E94', '#7E1E32', '#E8C987'];
 
 function makePetal(init) {
   return {
