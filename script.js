@@ -98,7 +98,9 @@ function makePetal(init) {
   };
 }
 if (!reducedMotion) {
-  for (let i = 0; i < 42; i++) petals.push(makePetal(true));
+  const isMobile = window.innerWidth < 480;
+  const PETAL_COUNT = isMobile ? 22 : 42;
+  for (let i = 0; i < PETAL_COUNT; i++) petals.push(makePetal(true));
   (function draw() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     petals.forEach(p => {
@@ -107,7 +109,7 @@ if (!reducedMotion) {
       p.rot += p.vr;
       if (p.y > canvas.height + 20) Object.assign(p, makePetal(false));
       ctx.save();
-      ctx.globalAlpha = p.alpha * 0.85;
+      ctx.globalAlpha = p.alpha * (isMobile ? 0.55 : 0.85);
       ctx.translate(p.x, p.y);
       ctx.rotate(p.rot);
       ctx.fillStyle = p.color;

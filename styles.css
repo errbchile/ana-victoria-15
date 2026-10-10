@@ -13,9 +13,13 @@
   --gold-dark: #8a6a2e;
   --ivory: #fdf6ee;
   --ivory-2: #f6e3d3;
-  --ink: #4a2433;
-  --muted: #7d5f68;
+  --ink: #3a1a27;
+  --muted: #5e434b;
   --shadow: 0 20px 50px rgba(126, 30, 50, 0.18);
+  --font-script: "Tangerine", cursive;
+  --font-serif: "Playfair Display", Georgia, serif;
+  --font-body: "EB Garamond", Georgia, serif;
+  --font-display: "Cinzel", "Playfair Display", Georgia, serif;
 }
 
 * {
@@ -26,7 +30,12 @@ html {
 }
 body {
   margin: 0;
-  font-family: "Cormorant Garamond", Georgia, serif;
+  font-family: var(--font-body);
+  font-size: 19px;
+  line-height: 1.6;
+  font-weight: 500;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
   color: var(--ink);
   background:
     radial-gradient(
@@ -146,7 +155,8 @@ main {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-serif);
+  font-weight: 700;
   letter-spacing: 2px;
   color: var(--burgundy-2);
   background: rgba(255, 255, 255, 0.6);
@@ -157,21 +167,32 @@ main {
   font-size: 22px;
 }
 .envelope-title {
-  font-family: "Great Vibes", cursive;
-  font-size: 46px;
-  margin: 6px 0;
-  color: var(--burgundy-2);
-  font-weight: 400;
+  font-family: var(--font-script);
+  font-size: clamp(54px, 15vw, 68px);
+  line-height: 1;
+  letter-spacing: 0.5px;
+  margin: 8px 0 4px;
+  color: #5a0f22;
+  font-weight: 700;
+  -webkit-text-stroke: 0.5px currentColor;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.7),
+    0 2px 14px rgba(90, 15, 34, 0.2);
+  font-kerning: normal;
 }
 .envelope-name {
-  font-family: "Playfair Display", serif;
-  letter-spacing: 6px;
+  font-family: var(--font-serif);
+  letter-spacing: 4px;
   text-transform: uppercase;
   font-size: 15px;
+  font-weight: 700;
   margin: 0 0 8px;
 }
 .envelope-sub {
   font-style: italic;
+  font-weight: 600;
+  font-size: 19px;
+  line-height: 1.5;
   color: var(--muted);
   margin: 0 0 22px;
 }
@@ -208,6 +229,11 @@ main {
 @media (max-width: 480px) {
   .env-roses {
     width: 112px;
+    opacity: 0.85;
+  }
+  #openBtn {
+    font-size: 15px;
+    padding: 16px 32px;
   }
 }
 
@@ -217,11 +243,12 @@ main {
   text-decoration: none;
   cursor: pointer;
   border: 0;
-  font-family: "Playfair Display", serif;
-  letter-spacing: 2px;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
-  font-size: 13px;
-  padding: 14px 28px;
+  font-size: 14px;
+  padding: 15px 30px;
   border-radius: 999px;
   transition: 0.3s;
 }
@@ -341,29 +368,42 @@ main {
 
 .eyebrow {
   font-style: italic;
+  font-weight: 500;
   color: var(--muted);
   margin: 0 0 6px;
-  font-size: 17px;
+  font-size: 18px;
+  line-height: 1.5;
 }
 .script-top {
-  font-family: "Great Vibes", cursive;
-  font-size: 44px;
-  color: var(--burgundy-2);
-  margin: 0;
+  font-family: var(--font-display);
+  font-size: 28px;
+  line-height: 1.25;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  font-weight: 700;
+  color: #5a0f22;
+  margin: 8px 0 2px;
 }
 .hero-name {
-  font-family: "Great Vibes", cursive;
-  font-size: 64px;
-  line-height: 1;
-  margin: 4px 0;
-  color: var(--burgundy);
-  font-weight: 400;
+  font-family: var(--font-script);
+  font-size: 80px;
+  line-height: 1.1;
+  letter-spacing: 0.5px;
+  margin: 4px 0 6px;
+  color: #5a0f22;
+  font-weight: 700;
+  -webkit-text-stroke: 0.4px currentColor;
+  text-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.65),
+    0 2px 12px rgba(90, 15, 34, 0.18);
+  font-kerning: normal;
 }
 .hero-surname {
-  font-family: "Playfair Display", serif;
-  letter-spacing: 5px;
+  font-family: var(--font-serif);
+  letter-spacing: 4px;
   text-transform: uppercase;
-  font-size: 14px;
+  font-size: 15px;
+  font-weight: 700;
   margin: 0;
   color: var(--gold-dark);
 }
@@ -414,28 +454,32 @@ main {
   pointer-events: none;
 }
 .hero-date {
-  font-family: "Playfair Display", serif;
-  font-size: 19px;
+  font-family: var(--font-serif);
+  font-size: 20px;
+  font-weight: 600;
   margin: 10px 0 2px;
 }
 .hero-time {
-  font-size: 19px;
+  font-size: 20px;
+  font-weight: 500;
   font-style: italic;
   margin: 0;
 }
 .hero-place {
   letter-spacing: 2px;
   text-transform: uppercase;
-  font-size: 13px;
+  font-size: 14px;
+  font-weight: 700;
   color: var(--gold-dark);
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-serif);
   margin: 10px 0 18px;
 }
 
 .section-title {
-  font-family: "Playfair Display", serif;
-  font-weight: 600;
+  font-family: var(--font-serif);
+  font-weight: 700;
   font-size: 30px;
+  line-height: 1.2;
   margin: 0;
   color: var(--burgundy);
 }
@@ -447,7 +491,8 @@ main {
 }
 .section-sub {
   font-style: italic;
-  font-size: 18px;
+  font-weight: 500;
+  font-size: 19px;
   color: var(--muted);
   margin: 6px 0 0;
 }
@@ -457,7 +502,8 @@ main {
 .muted {
   color: var(--muted);
   font-style: italic;
-  font-size: 15px;
+  font-weight: 500;
+  font-size: 16px;
 }
 .muted.light {
   color: var(--muted);
@@ -474,22 +520,28 @@ code {
 
 /* frase */
 .quote-mark {
-  font-family: "Great Vibes", cursive;
-  font-size: 70px;
+  font-family: var(--font-body);
+  font-weight: 700;
+  font-size: 64px;
   line-height: 0.5;
   color: var(--gold);
   margin-top: 10px;
 }
 .phrase-text {
   font-size: 24px;
+  font-weight: 500;
   font-style: italic;
-  line-height: 1.4;
+  line-height: 1.5;
   margin: 10px 0;
+  color: var(--ink);
 }
 .phrase-sign {
-  font-family: "Great Vibes", cursive;
-  font-size: 32px;
-  color: var(--burgundy-2);
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 26px;
+  line-height: 1.2;
+  color: #5a0f22;
   margin: 0;
 }
 
@@ -512,13 +564,14 @@ code {
   box-shadow: 0 6px 18px rgba(126, 30, 50, 0.12);
 }
 .cd-box span {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-serif);
   font-size: 32px;
   font-weight: 700;
   display: block;
 }
 .cd-box label {
   font-size: 12px;
+  font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
 }
@@ -527,10 +580,11 @@ code {
   color: var(--gold-dark);
 }
 .countdown-date {
-  letter-spacing: 3px;
-  font-size: 13px;
+  letter-spacing: 2px;
+  font-size: 14px;
+  font-weight: 700;
   color: var(--burgundy-2);
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-serif);
 }
 .cd-done {
   font-size: 20px;
@@ -559,31 +613,39 @@ code {
   color: var(--gold-dark);
 }
 .detail h3 {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-serif);
+  font-weight: 700;
   margin: 6px 0;
   color: var(--burgundy);
 }
 .detail p {
   margin: 0 0 10px;
-  font-size: 18px;
-  line-height: 1.4;
+  font-size: 19px;
+  font-weight: 500;
+  line-height: 1.5;
 }
 
 /* dress */
 .dress-big {
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-serif);
+  font-weight: 700;
   font-size: 38px;
   margin: 8px 0 0;
   letter-spacing: 1px;
 }
 .dress-sub {
-  font-family: "Great Vibes", cursive;
-  font-size: 30px;
-  color: var(--rose-burn);
-  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 1.3;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #5a0f22;
+  margin: 4px 0 0;
 }
 .dress-note {
-  font-size: 19px;
+  font-size: 20px;
+  font-weight: 500;
   line-height: 1.6;
 }
 .dress-swatches {
@@ -633,7 +695,8 @@ code {
   color: var(--gold-dark);
 }
 .gift-text {
-  font-size: 20px;
+  font-size: 21px;
+  font-weight: 500;
   line-height: 1.6;
   font-style: italic;
 }
@@ -658,23 +721,28 @@ code {
   display: flex;
   align-items: center;
   justify-content: center;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-serif);
+  font-weight: 700;
   letter-spacing: 2px;
   color: var(--burgundy-2);
   background: rgba(255, 255, 255, 0.5);
 }
 .footer-name {
-  font-family: "Great Vibes", cursive;
-  font-size: 28px;
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 700;
+  font-size: 22px;
+  line-height: 1.3;
   margin: 8px 0 0;
   color: var(--burgundy);
 }
 .footer-date {
   letter-spacing: 2px;
   text-transform: uppercase;
-  font-size: 12px;
+  font-size: 13px;
+  font-weight: 700;
   margin: 4px 0;
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-serif);
 }
 .footer-made {
   font-style: italic;
@@ -699,7 +767,8 @@ code {
   padding: 10px 14px;
   cursor: pointer;
   box-shadow: 0 10px 26px rgba(126, 30, 50, 0.3);
-  font-family: "Playfair Display", serif;
+  font-family: var(--font-serif);
+  font-weight: 700;
   font-size: 12px;
   letter-spacing: 1px;
   text-transform: uppercase;
@@ -764,6 +833,94 @@ code {
   transform: none;
 }
 
+@media (max-width: 480px) {
+  body {
+    font-size: 20px;
+    line-height: 1.65;
+    font-weight: 600;
+    background-attachment: scroll;
+    background:
+      radial-gradient(
+        700px 380px at 50% -6%,
+        rgba(255, 255, 255, 0.9),
+        transparent 65%
+      ),
+      linear-gradient(180deg, #fdf6ee 0%, #f9dcd4 50%, #f0c4b8 100%);
+  }
+  main {
+    padding: 16px 12px 32px;
+  }
+  .card {
+    padding: 28px 18px;
+    background: #fffdf9;
+    border-width: 2px;
+  }
+  .hero-card,
+  .card.dark {
+    background: #fffdf9;
+  }
+  .envelope {
+    padding: 16px;
+  }
+  .envelope-inner {
+    padding: 32px 20px;
+    background: #fffdf9;
+  }
+  .detail {
+    background: #ffffff;
+    padding: 16px 14px;
+  }
+  .hero-name {
+    font-size: 72px;
+  }
+  .script-top {
+    font-size: 24px;
+    letter-spacing: 2.5px;
+  }
+  .envelope-title {
+    font-size: 58px;
+    letter-spacing: 0.5px;
+  }
+  .eyebrow,
+  .section-sub,
+  .detail p,
+  .dress-note,
+  .gift-text,
+  .hero-time {
+    font-style: normal;
+  }
+  .eyebrow {
+    font-size: 19px;
+  }
+  .hero-surname {
+    letter-spacing: 1.5px;
+    font-size: 14px;
+  }
+  .hero-place,
+  .countdown-date,
+  .footer-date {
+    letter-spacing: 1.5px;
+    color: #5a0f22;
+  }
+  .countdown {
+    gap: 6px;
+  }
+  .cd-box {
+    min-width: 64px;
+    padding: 8px 6px;
+  }
+  .cd-box span {
+    font-size: 28px;
+  }
+  .cd-sep {
+    font-size: 22px;
+  }
+  .phrase-text {
+    font-size: 22px;
+    line-height: 1.6;
+  }
+}
+
 @media (min-width: 640px) {
   main {
     padding: 36px 24px 50px;
@@ -772,7 +929,13 @@ code {
     padding: 44px 40px;
   }
   .hero-name {
-    font-size: 78px;
+    font-size: 96px;
+  }
+  .script-top {
+    font-size: 30px;
+  }
+  .envelope-title {
+    font-size: 70px;
   }
   .detail-grid {
     grid-template-columns: 1fr 1fr;
