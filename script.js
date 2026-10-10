@@ -69,11 +69,12 @@ $('lbClose').addEventListener('click', () => lightbox.classList.add('hidden'));
 lightbox.addEventListener('click', (e) => { if (e.target === lightbox) lightbox.classList.add('hidden'); });
 document.addEventListener('keydown', (e) => { if (e.key === 'Escape') lightbox.classList.add('hidden'); });
 
-// ---------- Pétalos dorados + rosas ----------
+// ---------- Escarcha dorada victoriana (polvo + estrellas) ----------
 const canvas = $('petals');
 const ctx = canvas.getContext('2d');
-let petals = [];
+let motes = [];
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const isMobile = window.innerWidth < 480;
 
 function resize() {
   canvas.width = window.innerWidth;
@@ -82,45 +83,84 @@ function resize() {
 resize();
 window.addEventListener('resize', resize);
 
-const COLORS = ['#C99A4A', '#C25A6B', '#DD8E94', '#7E1E32', '#E8C987'];
+const COLORS = ['#8a6a2e', '#A87C33', '#C25A6B', '#C99A4A', '#FFF6E5'];
 
-function makePetal(init) {
+function makeMote(init) {
+  const isSpark = Math.random() < 0.3; // 30% estrellas, 70% polvo
   return {
+    type: isSpark ? 'spark' : 'dust',
     x: Math.random() * canvas.width,
     y: init ? Math.random() * canvas.height : -20,
-    r: 3 + Math.random() * 6,
-    vy: 0.4 + Math.random() * 1.1,
+    r: isSpark ? 6 + Math.random() * 6 : 1.6 + Math.random() * 1.8,
+    vy: 0.15 + Math.random() * 0.4,
     vx: -0.4 + Math.random() * 0.8,
+    swayAmp: 0.3 + Math.random() * 0.4,
+    swayFreq: 0.008 + Math.random() * 0.02,
+    phase: Math.random() * Math.PI * 2,
     rot: Math.random() * Math.PI * 2,
-    vr: -0.02 + Math.random() * 0.04,
+    vr: -0.01 + Math.random() * 0.02,
     color: COLORS[Math.floor(Math.random() * COLORS.length)],
-    alpha: 0.5 + Math.random() * 0.5
+    alpha: 0.75 + Math.random() * 0.25,
+    twinkleSpeed: 0.02 + Math.random() * 0.05,
   };
 }
-if (!reducedMotion) {
-  const isMobile = window.innerWidth < 480;
-  const PETAL_COUNT = isMobile ? 22 : 42;
-  for (let i = 0; i < PETAL_COUNT; i++) petals.push(makePetal(true));
-  (function draw() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    petals.forEach(p => {
-      p.x += p.vx + Math.sin(p.rot) * 0.4;
-      p.y += p.vy;
-      p.rot += p.vr;
-      if (p.y > canvas.height + 20) Object.assign(p, makePetal(false));
-      ctx.save();
-      ctx.globalAlpha = p.alpha * (isMobile ? 0.55 : 0.85);
-      ctx.translate(p.x, p.y);
-      ctx.rotate(p.rot);
+let rafId = null;
+function drawFrost() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  motes.forEach((p) => {
+    // misma caída que los pétalos + titileo de escarcha
+    p.phase += p.swayFreq * 2;
+    p.x += p.vx + Math.sin(p.phase) * p.swayAmp * 0.4;
+    p.y += p.vy;
+    p.rot += p.vr;
+    p.twinklePhase = (p.twinklePhase || Math.random() * 10) + p.twinkleSpeed;
+    if (p.y > canvas.height + 20) Object.assign(p, makeMote(false));
+    const tw = 0.72 + 0.28 * Math.sin(p.twinklePhase);
+    ctx.save();
+    ctx.globalAlpha = p.alpha * tw * (isMobile ? 0.9 : 1.0);
+    ctx.translate(p.x, p.y);
+    if (p.type === 'dust') {
+      ctx.shadowBlur = isMobile ? 5 : 6;
+      ctx.shadowColor = 'rgba(110,20,40,0.55)';
       ctx.fillStyle = p.color;
-      // pétalo: elipse
       ctx.beginPath();
-      ctx.ellipse(0, 0, p.r, p.r * 0.62, 0, 0, Math.PI * 2);
+      ctx.arc(0, 0, p.r, 0, Math.PI * 2);
       ctx.fill();
-      ctx.restore();
-    });
-    requestAnimationFrame(draw);
-  })();
+    } else {
+      const s = p.r * (0.7 + 0.45 * tw);
+      ctx.rotate(p.rot * 0.3);
+      ctx.strokeStyle = p.color;
+      ctx.lineWidth = 1.8;
+      ctx.lineCap = 'round';
+      ctx.shadowBlur = isMobile ? 5 : 10;
+      ctx.shadowColor = 'rgba(110,20,40,0.55)';
+      // cruz de 4 puntas
+      ctx.beginPath();
+      ctx.moveTo(-s, 0); ctx.lineTo(s, 0);
+      ctx.moveTo(0, -s); ctx.lineTo(0, s);
+      ctx.stroke();
+      // punto central marfil (no blanco puro para no quemar)
+      ctx.fillStyle = '#FFFDF9';
+      ctx.beginPath();
+      ctx.arc(0, 0, Math.max(1.2, p.r * 0.22), 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.restore();
+  });
+  rafId = requestAnimationFrame(drawFrost);
+}
+if (!reducedMotion) {
+  const MOTE_COUNT = isMobile ? 35 : 60;
+  for (let i = 0; i < MOTE_COUNT; i++) motes.push(makeMote(true));
+  drawFrost();
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) {
+      if (rafId) cancelAnimationFrame(rafId);
+      rafId = null;
+    } else if (!rafId && !reducedMotion) {
+      drawFrost();
+    }
+  });
 }
 
 // ---------- Música: vals ----------
