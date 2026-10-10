@@ -59,8 +59,10 @@ const lightbox = $('lightbox');
 const lbImg = $('lbImg');
 document.querySelectorAll('.g-item img').forEach(img => {
   img.parentElement.addEventListener('click', () => {
-    // usa versión más grande
-    lbImg.src = img.src.replace('/600/760', '/900/1100');
+    // picsum legacy: usa versión grande; fotos locales: mismo src
+    lbImg.src = img.src.includes('picsum.photos')
+      ? img.src.replace('/600/760', '/900/1100')
+      : img.src;
     lbImg.alt = img.alt;
     lightbox.classList.remove('hidden');
   });

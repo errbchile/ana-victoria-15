@@ -8,8 +8,9 @@
   <meta property="og:title" content="Mis XV Años — Ana Victoria" />
   <meta property="og:description" content="Como una rosa en el jardín victoriano, hoy florezco hacia un nuevo capítulo. 14 Nov 2026 · 7:30 PM · Aguasanta" />
   <meta property="og:type" content="website" />
-  <meta property="og:image" content="https://TU-SITIO.netlify.app/images/foto-principal.jpg" />
+  <meta property="og:image" content="images/ana_victoria.jpeg" />
   <meta name="theme-color" content="#F7D8D2" />
+  <link rel="preload" as="image" href="images/ana_victoria.jpeg" fetchpriority="high" />
   <noscript><style>#envelope{display:none!important}.reveal{opacity:1!important;transform:none!important}</style></noscript>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,16 +34,12 @@
 
   <!-- SOBRE DE APERTURA -->
   <div id="envelope" class="envelope" role="dialog" aria-modal="true" aria-label="Abrir invitación">
-    <div class="envelope-inner">
-      <img class="env-roses env-roses-tl" src="images/rosas-esquina.jpeg" alt="" aria-hidden="true" onerror="this.remove()" />
-      <img class="env-roses env-roses-br" src="images/rosas-esquina.jpeg" alt="" aria-hidden="true" onerror="this.remove()" />
-      <div class="envelope-monogram">A · V</div>
-      <div class="envelope-orn">❦</div>
-      <h1 class="envelope-title">Mis XV Años</h1>
-      <p class="envelope-name">Ana Victoria</p>
-      <p class="envelope-sub">Tienes una invitación sellada con amor</p>
+    <div class="envelope-inner envelope-cover">
+      <h1 class="sr-only">Mis XV Años — Ana Victoria</h1>
+      <figure class="envelope-figure">
+        <img src="fondos/ejemplo_sin_boton.jpeg" alt="Mis XV Años Ana Victoria — Tienes una invitación sellada con amor" fetchpriority="high" decoding="async" />
+      </figure>
       <button id="openBtn" class="btn btn-gold">Abrir invitación</button>
-      <p class="envelope-hint">Toca para abrir · con música de vals</p>
     </div>
   </div>
 
@@ -63,7 +60,7 @@
         <div class="divider"><span></span><i>❦</i><span></span></div>
 
         <div class="hero-photo">
-          <img src="https://picsum.photos/seed/xv-ana-principal/600/760" alt="Ana Victoria — foto principal" loading="eager" />
+          <img src="images/ana_victoria.jpeg" alt="Ana Victoria con vestido vinotinto — foto principal" loading="eager" fetchpriority="high" decoding="async" width="768" height="1365" />
           <div class="hero-photo-frame"></div>
         </div>
 
@@ -147,21 +144,15 @@
       </div>
     </section>
 
-    <!-- GALERÍA -->
-    <section class="section gallery reveal">
+    <!-- GALERÍA: oculta hasta tener fotos reales. Para activarla, quita `hidden` y agrega <button class="g-item"><img src="images/foto1.jpg" ...></button> -->
+    <section class="section gallery reveal" hidden>
       <div class="card">
         <h2 class="section-title">Mi Galería</h2>
         <p class="section-sub">Un adelanto de mi sesión — toca para ampliar</p>
         <div class="divider small"><span></span><i>❦</i><span></span></div>
         <div class="gallery-grid">
-          <button class="g-item"><img src="https://picsum.photos/seed/xv-ana-1/600/760" alt="Foto de ejemplo 1 — reemplázame" loading="lazy" /></button>
-          <button class="g-item"><img src="https://picsum.photos/seed/xv-ana-2/600/760" alt="Foto de ejemplo 2 — reemplázame" loading="lazy" /></button>
-          <button class="g-item"><img src="https://picsum.photos/seed/xv-ana-3/600/760" alt="Foto de ejemplo 3 — reemplázame" loading="lazy" /></button>
-          <button class="g-item"><img src="https://picsum.photos/seed/xv-ana-4/600/760" alt="Foto de ejemplo 4 — reemplázame" loading="lazy" /></button>
-          <button class="g-item"><img src="https://picsum.photos/seed/xv-ana-5/600/760" alt="Foto de ejemplo 5 — reemplázame" loading="lazy" /></button>
-          <button class="g-item"><img src="https://picsum.photos/seed/xv-ana-6/600/760" alt="Foto de ejemplo 6 — reemplázame" loading="lazy" /></button>
+          <button type="button" class="g-item"><img src="images/ana_victoria.jpeg" alt="Ana Victoria — sesión" loading="lazy" decoding="async" /></button>
         </div>
-        <p class="muted">Fotos de ejemplo. Guárdalas en <code>/images/</code> y cambia los <code>src</code> en el HTML.</p>
       </div>
     </section>
 
