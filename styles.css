@@ -53,11 +53,16 @@ body {
       rgba(221, 142, 148, 0.22),
       transparent 60%
     ),
-    repeating-linear-gradient(
-      115deg,
-      rgba(255, 255, 255, 0.16) 0 26px,
-      transparent 26px 72px
+    linear-gradient(
+      180deg,
+      rgba(253, 246, 238, 0.78) 0%,
+      rgba(249, 220, 212, 0.72) 45%,
+      rgba(236, 192, 184, 0.78) 100%
     ),
+    image-set(
+      url("fondos/textura_damasco.webp") type("image/webp"),
+      url("fondos/textura_damasco.jpg") type("image/jpeg")
+    ) center / 460px auto repeat,
     linear-gradient(
       180deg,
       #fdf6ee 0%,
@@ -66,6 +71,7 @@ body {
       #ecc0b8 78%,
       #e3aca4 100%
     );
+  background-color: #f6d5c3;
   background-attachment: fixed;
   min-height: 100vh;
   overflow-x: hidden;
@@ -276,22 +282,65 @@ main {
   border-radius: 4px;
   pointer-events: none;
 }
-/* Hero claro seda como la referencia */
+/* Hero con fondo castillo — mobile-first: foto + velo marfil para legibilidad */
 .hero-card {
   background:
-    radial-gradient(
-      500px 260px at 50% 0%,
-      rgba(255, 255, 255, 0.85),
-      transparent 70%
+    linear-gradient(
+      180deg,
+      rgba(253, 246, 238, 0.84) 0%,
+      rgba(253, 246, 238, 0.62) 45%,
+      rgba(246, 213, 195, 0.86) 100%
     ),
+    url("fondos/fondo_castillo.jpeg") center 18% / cover no-repeat,
     linear-gradient(180deg, #fffdf9 0%, #fbeedd 45%, #f6d5c3 100%);
   border: 1px solid var(--gold);
+}
+.hero-card .eyebrow,
+.hero-card .script-top,
+.hero-card .hero-name,
+.hero-card .hero-surname,
+.hero-card .hero-date,
+.hero-card .hero-time,
+.hero-card .hero-place {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 12px rgba(255, 255, 255, 0.9);
+}
+/* Franja móvil oculta por defecto (solo se activa en max-width:480px) */
+.hero-card::after {
+  display: none;
 }
 /* Antes .card.dark era vinotinto: ahora es blush claro para tema seda */
 .card.dark {
   background: linear-gradient(180deg, #fffdf9 0%, #f9dcd4 55%, #f3c9be 100%);
   color: var(--burgundy);
   border-color: var(--gold);
+}
+/* Countdown con fondo moldura barroca — mobile-first sutil */
+#countdown .card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(253, 246, 238, 0.68) 0%,
+      rgba(249, 220, 212, 0.58) 50%,
+      rgba(246, 213, 195, 0.72) 100%
+    ),
+    image-set(
+      url("fondos/fondo_countdown.webp") type("image/webp"),
+      url("fondos/fondo_countdown.jpg") type("image/jpeg")
+    ) center 32% / cover no-repeat,
+    linear-gradient(180deg, #fffdf9 0%, #f9dcd4 55%, #f3c9be 100%);
+}
+#countdown .card::before {
+  display: none;
+}
+#countdown .section-title,
+#countdown .section-sub,
+#countdown .countdown-date,
+#countdown .cd-done {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.9);
 }
 .section {
   margin: 22px 0;
@@ -411,8 +460,10 @@ main {
   display: block;
   border-radius: 160px 160px 12px 12px;
   border: 3px solid var(--gold);
-  box-shadow: 0 14px 34px rgba(110, 20, 40, 0.32);
+  box-shadow: 0 14px 40px rgba(110, 20, 40, 0.45);
   background: #fff;
+  position: relative;
+  z-index: 1;
 }
 .hero-photo-frame {
   position: absolute;
@@ -526,12 +577,16 @@ code {
   min-width: 62px;
   flex: 1 1 0;
   max-width: 84px;
-  background: linear-gradient(180deg, #fffdf9, #fbe3d2);
+  background: rgba(255, 253, 249, 0.88);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
   border: 1px solid var(--gold);
   border-radius: 10px;
   padding: 10px 6px;
   color: var(--burgundy);
   box-shadow: 0 6px 18px rgba(126, 30, 50, 0.12);
+  position: relative;
+  z-index: 1;
 }
 .cd-box span {
   font-family: var(--font-serif);
@@ -822,7 +877,18 @@ code {
         rgba(255, 255, 255, 0.9),
         transparent 65%
       ),
+      linear-gradient(
+        180deg,
+        rgba(253, 246, 238, 0.82) 0%,
+        rgba(249, 220, 212, 0.78) 50%,
+        rgba(240, 196, 184, 0.84) 100%
+      ),
+      image-set(
+        url("fondos/textura_damasco.webp") type("image/webp"),
+        url("fondos/textura_damasco.jpg") type("image/jpeg")
+      ) center / 320px auto repeat,
       linear-gradient(180deg, #fdf6ee 0%, #f9dcd4 50%, #f0c4b8 100%);
+    background-color: #f9dcd4;
   }
   main {
     padding: 16px 12px 32px;
@@ -832,9 +898,47 @@ code {
     background: #fffdf9;
     border-width: 2px;
   }
-  .hero-card,
   .card.dark {
     background: #fffdf9;
+  }
+  .hero-card {
+    background: #fffdf9;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Franja superior 300x500 aprox: ratio 0.6 muestra 72% del ancho
+     (columnas + arco + castillo). Fundido a marfil para legibilidad. */
+  .hero-card::after {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 510px;
+    background:
+      linear-gradient(
+        180deg,
+        rgba(253, 246, 238, 0.52) 0%,
+        rgba(253, 246, 238, 0.26) 45%,
+        rgba(255, 253, 249, 0) 76%,
+        #fffdf9 100%
+      ),
+      url("fondos/fondo_castillo.jpeg") 68% 12% / cover no-repeat;
+    -webkit-mask-image: linear-gradient(180deg, black 60%, transparent 99%);
+    mask-image: linear-gradient(180deg, black 60%, transparent 99%);
+    pointer-events: none;
+    z-index: 0;
+  }
+  .hero-card > * {
+    position: relative;
+    z-index: 1;
+  }
+  .hero-card::before {
+    z-index: 2;
+  }
+  .hero-photo {
+    width: min(260px, 78%);
   }
   .envelope {
     padding: 16px;
@@ -881,6 +985,20 @@ code {
   .countdown {
     gap: 6px;
   }
+  #countdown .card {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(253, 246, 238, 0.74) 0%,
+        rgba(249, 220, 212, 0.66) 50%,
+        rgba(246, 213, 195, 0.78) 100%
+      ),
+      image-set(
+        url("fondos/fondo_countdown.webp") type("image/webp"),
+        url("fondos/fondo_countdown.jpg") type("image/jpeg")
+      ) center 22% / cover no-repeat,
+      #fffdf9;
+  }
   .cd-box {
     min-width: 64px;
     padding: 8px 6px;
@@ -903,6 +1021,9 @@ code {
   }
   .card {
     padding: 44px 40px;
+  }
+  .hero-card {
+    background-position: center 22%;
   }
   .hero-name {
     font-size: 96px;
