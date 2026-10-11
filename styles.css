@@ -538,6 +538,43 @@ code {
 }
 
 /* frase */
+#frase .card {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(253, 246, 238, 0.86) 0%,
+      rgba(249, 220, 212, 0.82) 55%,
+      rgba(255, 253, 249, 0.88) 100%
+    ),
+    image-set(
+      url("fondos/fondo_frase.webp") type("image/webp"),
+      url("fondos/fondo_frase.jpg") type("image/jpeg")
+    ) center 35% / 680px auto repeat,
+    #fffdf9;
+}
+#frase .quote-mark,
+#frase .phrase-text,
+#frase .phrase-sign {
+  position: relative;
+  z-index: 1;
+  text-shadow: 0 1px 10px rgba(255, 255, 255, 0.95);
+}
+/* Secundarias ultra-sutil: mismo damasco reutilizado, velo 0.93.
+   Detalles / Dress / Regalos. RSVP se deja blanco para el CTA. */
+.card.card--soft {
+  background:
+    linear-gradient(
+      180deg,
+      rgba(253, 246, 238, 0.93) 0%,
+      rgba(249, 220, 212, 0.92) 55%,
+      rgba(255, 253, 249, 0.94) 100%
+    ),
+    image-set(
+      url("fondos/fondo_frase.webp") type("image/webp"),
+      url("fondos/fondo_frase.jpg") type("image/jpeg")
+    ) center 35% / 680px auto repeat,
+    #fffdf9;
+}
 .quote-mark {
   font-family: var(--font-body);
   font-weight: 700;
@@ -675,9 +712,20 @@ code {
 }
 .dress-swatches {
   display: flex;
-  gap: 10px;
+  flex-wrap: wrap;
+  gap: 12px 10px;
   justify-content: center;
-  margin-top: 14px;
+  margin: 14px 0 0;
+  padding: 0;
+  list-style: none;
+}
+.dress-swatches li {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  min-width: 52px;
+  flex: 0 1 auto;
 }
 .dress-swatches span {
   width: 34px;
@@ -686,6 +734,19 @@ code {
   background: var(--c);
   border: 2px solid rgba(255, 255, 255, 0.8);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  display: block;
+  margin: 0 auto;
+}
+.dress-swatches small {
+  font-family: var(--font-serif);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  line-height: 1.2;
+  color: var(--burgundy-2);
+  text-align: center;
+  max-width: 72px;
 }
 
 /* galería */
@@ -901,6 +962,20 @@ code {
   .card.dark {
     background: #fffdf9;
   }
+  .card.card--soft {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(253, 246, 238, 0.93) 0%,
+        rgba(249, 220, 212, 0.92) 55%,
+        rgba(255, 253, 249, 0.94) 100%
+      ),
+      image-set(
+        url("fondos/fondo_frase.webp") type("image/webp"),
+        url("fondos/fondo_frase.jpg") type("image/jpeg")
+      ) center 35% / 480px auto repeat,
+      #fffdf9;
+  }
   .hero-card {
     background: #fffdf9;
     position: relative;
@@ -1024,6 +1099,34 @@ code {
   }
   .hero-card {
     background-position: center 22%;
+  }
+  #frase .card {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(253, 246, 238, 0.86) 0%,
+        rgba(249, 220, 212, 0.82) 55%,
+        rgba(255, 253, 249, 0.88) 100%
+      ),
+      image-set(
+        url("fondos/fondo_frase.webp") type("image/webp"),
+        url("fondos/fondo_frase.jpg") type("image/jpeg")
+      ) center 35% / cover no-repeat,
+      #fffdf9;
+  }
+  .card.card--soft {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(253, 246, 238, 0.93) 0%,
+        rgba(249, 220, 212, 0.92) 55%,
+        rgba(255, 253, 249, 0.94) 100%
+      ),
+      image-set(
+        url("fondos/fondo_frase.webp") type("image/webp"),
+        url("fondos/fondo_frase.jpg") type("image/jpeg")
+      ) center 35% / cover no-repeat,
+      #fffdf9;
   }
   .hero-name {
     font-size: 96px;

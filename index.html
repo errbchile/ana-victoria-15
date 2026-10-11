@@ -1,203 +1,361 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mis XV Años — Ana Victoria</title>
-  <meta name="description" content="Con gran alegría te invito a celebrar mis XV años. Ana Victoria — 14 de Noviembre 2026, Aguasanta." />
-  <meta property="og:title" content="Mis XV Años — Ana Victoria" />
-  <meta property="og:description" content="Como una rosa en el jardín victoriano, hoy florezco hacia un nuevo capítulo. 14 Nov 2026 · 7:30 PM · Aguasanta" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="images/ana_victoria.jpeg" />
-  <meta name="theme-color" content="#F7D8D2" />
-  <link rel="preload" as="image" href="images/ana_victoria.jpeg" fetchpriority="high" />
-  <link rel="preload" as="image" href="fondos/fondo_castillo.jpeg" fetchpriority="low" />
-  <noscript><style>#envelope{display:none!important}.reveal{opacity:1!important;transform:none!important}</style></noscript>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=EB+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Cinzel:wght@600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='serif' fill='%23C99A4A'>A</text></svg>" />
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mis XV Años — Ana Victoria</title>
+    <meta
+      name="description"
+      content="Con gran alegría te invito a celebrar mis XV años. Ana Victoria — 14 de Noviembre 2026, Aguasanta."
+    />
+    <meta property="og:title" content="Mis XV Años — Ana Victoria" />
+    <meta
+      property="og:description"
+      content="Como una rosa en el jardín victoriano, hoy florezco hacia un nuevo capítulo. 14 Nov 2026 · 7:30 PM · Aguasanta"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="images/ana_victoria.jpeg" />
+    <meta name="theme-color" content="#F7D8D2" />
+    <link
+      rel="preload"
+      as="image"
+      href="images/ana_victoria.jpeg"
+      fetchpriority="high"
+    />
+    <link
+      rel="preload"
+      as="image"
+      href="fondos/fondo_castillo.jpeg"
+      fetchpriority="low"
+    />
+    <noscript
+      ><style>
+        #envelope {
+          display: none !important;
+        }
+        .reveal {
+          opacity: 1 !important;
+          transform: none !important;
+        }
+      </style></noscript
+    >
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Tangerine:wght@400;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;0,800;1,500;1,600;1,700&family=EB+Garamond:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Cinzel:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="icon"
+      href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90' font-family='serif' fill='%23C99A4A'>A</text></svg>"
+    />
+  </head>
+  <body>
+    <!-- Pétalos / brillos -->
+    <canvas id="petals" aria-hidden="true"></canvas>
 
-  <!-- Pétalos / brillos -->
-  <canvas id="petals" aria-hidden="true"></canvas>
+    <!-- Botón música flotante -->
+    <button
+      id="musicBtn"
+      class="music-btn"
+      aria-label="Reproducir vals"
+      title="Vals"
+    >
+      <span class="music-icon" aria-hidden="true">
+        <svg
+          viewBox="0 0 24 24"
+          width="22"
+          height="22"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="1.6"
+        >
+          <path d="M9 18V5l12-2v13" />
+          <circle cx="6" cy="18" r="3" />
+          <circle cx="18" cy="16" r="3" />
+        </svg>
+      </span>
+      <span class="music-label">vals</span>
+      <span class="music-state" id="musicState">pausado</span>
+    </button>
 
-  <!-- Botón música flotante -->
-  <button id="musicBtn" class="music-btn" aria-label="Reproducir vals" title="Vals">
-    <span class="music-icon" aria-hidden="true">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
-    </span>
-    <span class="music-label">vals</span>
-    <span class="music-state" id="musicState">pausado</span>
-  </button>
-
-  <!-- SOBRE DE APERTURA -->
-  <div id="envelope" class="envelope" role="dialog" aria-modal="true" aria-label="Abrir invitación">
-    <div class="envelope-inner envelope-cover">
-      <h1 class="sr-only">Mis XV Años — Ana Victoria</h1>
-      <figure class="envelope-figure">
-        <img src="fondos/ejemplo_sin_boton.jpeg" alt="Mis XV Años Ana Victoria — Tienes una invitación sellada con amor" fetchpriority="high" decoding="async" />
-      </figure>
-      <button id="openBtn" class="btn btn-gold">Abrir invitación</button>
+    <!-- SOBRE DE APERTURA -->
+    <div
+      id="envelope"
+      class="envelope"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Abrir invitación"
+    >
+      <div class="envelope-inner envelope-cover">
+        <h1 class="sr-only">Mis XV Años — Ana Victoria</h1>
+        <figure class="envelope-figure">
+          <img
+            src="fondos/ejemplo_sin_boton.jpeg"
+            alt="Mis XV Años Ana Victoria — Tienes una invitación sellada con amor"
+            fetchpriority="high"
+            decoding="async"
+          />
+        </figure>
+        <button id="openBtn" class="btn btn-gold">Abrir invitación</button>
+      </div>
     </div>
-  </div>
 
-  <div class="page-frame" aria-hidden="true"></div>
+    <div class="page-frame" aria-hidden="true"></div>
 
-  <main id="main">
-    <!-- HERO -->
-    <header class="hero">
-      <div class="card hero-card">
-        <div class="corner tl"></div><div class="corner tr"></div>
-        <div class="corner bl"></div><div class="corner br"></div>
+    <main id="main">
+      <!-- HERO -->
+      <header class="hero">
+        <div class="card hero-card">
+          <div class="corner tl"></div>
+          <div class="corner tr"></div>
+          <div class="corner bl"></div>
+          <div class="corner br"></div>
 
-        <p class="eyebrow">Con la bendición de Dios y el amor de mi familia</p>
-        <p class="script-top">Mis XV Años</p>
-        <h1 class="hero-name">Ana Victoria</h1>
-        <p class="hero-surname">Sarmiento Pereira</p>
+          <p class="eyebrow">
+            Con la bendición de Dios y el amor de mi familia
+          </p>
+          <p class="script-top">Mis XV Años</p>
+          <h1 class="hero-name">Ana Victoria</h1>
+          <p class="hero-surname">Sarmiento Pereira</p>
 
-        <div class="divider"><span></span><i>❦</i><span></span></div>
+          <div class="divider"><span></span><i>❦</i><span></span></div>
 
-        <div class="hero-photo">
-          <img src="images/ana_victoria.jpeg" alt="Ana Victoria con vestido vinotinto — foto principal" loading="eager" fetchpriority="high" decoding="async" width="768" height="1365" />
-          <div class="hero-photo-frame"></div>
-        </div>
-
-        <p class="hero-date">Sábado · 14 de Noviembre de 2026</p>
-        <p class="hero-time">7:30 de la noche</p>
-        <p class="hero-place">Salón de Eventos Aguasanta</p>
-
-        <a href="#frase" class="btn btn-burgundy">Ver invitación</a>
-      </div>
-    </header>
-
-    <!-- FRASE -->
-    <section id="frase" class="section phrase reveal">
-      <div class="card">
-        <div class="quote-mark">“</div>
-        <p class="phrase-text">Como una rosa en el jardín victoriano, hoy florezco hacia un nuevo capítulo.</p>
-        <div class="divider small"><span></span><i>❦</i><span></span></div>
-        <p class="phrase-sign">Ana Victoria</p>
-      </div>
-    </section>
-
-    <!-- COUNTDOWN -->
-    <section id="countdown" class="section countdown-section reveal">
-      <div class="card dark">
-        <h2 class="section-title gold">Falta poco para el vals</h2>
-        <p class="section-sub">Cada pétalo cuenta hasta ese día</p>
-        <div class="countdown" role="timer" aria-label="Cuenta regresiva">
-          <div class="cd-box"><span id="cd-days">00</span><label>Días</label></div>
-          <div class="cd-sep">:</div>
-          <div class="cd-box"><span id="cd-hours">00</span><label>Horas</label></div>
-          <div class="cd-sep">:</div>
-          <div class="cd-box"><span id="cd-mins">00</span><label>Min</label></div>
-          <div class="cd-sep">:</div>
-          <div class="cd-box"><span id="cd-secs">00</span><label>Seg</label></div>
-        </div>
-        <p id="cd-done" class="cd-done hidden" aria-live="polite">¡Hoy es el gran día! Nos vemos en el vals.</p>
-        <p class="countdown-date">14 · 11 · 2026 — 7:30 PM</p>
-      </div>
-    </section>
-
-    <!-- DETALLES -->
-    <section class="section details reveal">
-      <div class="card">
-        <h2 class="section-title">Cuándo & Dónde</h2>
-        <div class="divider small"><span></span><i>❦</i><span></span></div>
-
-        <div class="detail-grid">
-          <div class="detail">
-            <div class="detail-icon">◷</div>
-            <h3>Ceremonia & Fiesta</h3>
-            <p><strong>Sábado 14 de Noviembre 2026</strong><br />7:30 PM (hora Venezuela)</p>
-            <a class="link-gold" target="_blank" rel="noopener" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mis+XV+A%C3%B1os+%E2%80%94+Ana+Victoria&dates=20261114T233000Z/20261115T033000Z&details=Sal%C3%B3n+de+Eventos+Aguasanta,+Sector+Terepaima,+Aguaviva,+Cabudare&location=Aguasanta,+Cabudare">Agendar fecha</a>
+          <div class="hero-photo">
+            <img
+              src="images/ana_victoria.jpeg"
+              alt="Ana Victoria con vestido vinotinto — foto principal"
+              loading="eager"
+              fetchpriority="high"
+              decoding="async"
+              width="768"
+              height="1365"
+            />
+            <div class="hero-photo-frame"></div>
           </div>
-          <div class="detail">
-            <div class="detail-icon">⚜</div>
-            <h3>Salón Aguasanta</h3>
-            <p>Sector Terepaima, Aguaviva<br />Cabudare</p>
-            <div class="btn-row">
-              <a class="btn btn-gold btn-sm" target="_blank" rel="noopener" href="https://maps.app.goo.gl/TqyJQEDRbFRrQ9aJ7">Cómo llegar</a>
+
+          <p class="hero-date">Sábado · 14 de Noviembre de 2026</p>
+          <p class="hero-time">7:30 de la noche</p>
+          <p class="hero-place">Salón de Eventos Aguasanta</p>
+
+          <a href="#frase" class="btn btn-burgundy">Ver invitación</a>
+        </div>
+      </header>
+
+      <!-- FRASE -->
+      <section id="frase" class="section phrase reveal">
+        <div class="card">
+          <div class="quote-mark">“</div>
+          <p class="phrase-text">
+            Como una rosa en el jardín victoriano, hoy florezco hacia un nuevo
+            capítulo.
+          </p>
+          <div class="divider small"><span></span><i>❦</i><span></span></div>
+          <p class="phrase-sign">Ana Victoria</p>
+        </div>
+      </section>
+
+      <!-- COUNTDOWN -->
+      <section id="countdown" class="section countdown-section reveal">
+        <div class="card dark">
+          <h2 class="section-title gold">Falta poco para el vals</h2>
+          <p class="section-sub">Cada pétalo cuenta hasta ese día</p>
+          <div class="countdown" role="timer" aria-label="Cuenta regresiva">
+            <div class="cd-box">
+              <span id="cd-days">00</span><label>Días</label>
+            </div>
+            <div class="cd-sep">:</div>
+            <div class="cd-box">
+              <span id="cd-hours">00</span><label>Horas</label>
+            </div>
+            <div class="cd-sep">:</div>
+            <div class="cd-box">
+              <span id="cd-mins">00</span><label>Min</label>
+            </div>
+            <div class="cd-sep">:</div>
+            <div class="cd-box">
+              <span id="cd-secs">00</span><label>Seg</label>
+            </div>
+          </div>
+          <p id="cd-done" class="cd-done hidden" aria-live="polite">
+            ¡Hoy es el gran día! Nos vemos en el vals.
+          </p>
+          <p class="countdown-date">14 · 11 · 2026 — 7:30 PM</p>
+        </div>
+      </section>
+
+      <!-- DETALLES -->
+      <section class="section details reveal">
+        <div class="card card--soft">
+          <h2 class="section-title">Cuándo & Dónde</h2>
+          <div class="divider small"><span></span><i>❦</i><span></span></div>
+
+          <div class="detail-grid">
+            <div class="detail">
+              <div class="detail-icon">◷</div>
+              <h3>Ceremonia & Fiesta</h3>
+              <p>
+                <strong>Sábado 14 de Noviembre 2026</strong><br />7:30 PM (hora
+                Venezuela)
+              </p>
+              <a
+                class="link-gold"
+                target="_blank"
+                rel="noopener"
+                href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Mis+XV+A%C3%B1os+%E2%80%94+Ana+Victoria&dates=20261114T233000Z/20261115T033000Z&details=Sal%C3%B3n+de+Eventos+Aguasanta,+Sector+Terepaima,+Aguaviva,+Cabudare&location=Aguasanta,+Cabudare"
+                >Agendar fecha</a
+              >
+            </div>
+            <div class="detail">
+              <div class="detail-icon">⚜</div>
+              <h3>Salón Aguasanta</h3>
+              <p>Sector Terepaima, Aguaviva<br />Cabudare</p>
+              <div class="btn-row">
+                <a
+                  class="btn btn-gold btn-sm"
+                  target="_blank"
+                  rel="noopener"
+                  href="https://maps.app.goo.gl/TqyJQEDRbFRrQ9aJ7"
+                  >Cómo llegar</a
+                >
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- DRESS CODE -->
-    <section class="section dress reveal">
-      <div class="card dark">
-        <h2 class="section-title gold">Código de Vestimenta</h2>
-        <p class="dress-big">Formal Gala</p>
-        <div class="divider small gold"><span></span><i>❦</i><span></span></div>
-        <p class="dress-note">Traje elegante · Vestido largo<br />Colores reservados para la quinceañera<br /><em>(No usar)</em></p>
-        <div class="dress-swatches" aria-hidden="true">
-          <span style="--c:#FFA500"></span>
-          <span style="--c:#FFC0CB"></span>
-          <span style="--c:#C0C0C0"></span>
-          <span style="--c:#FFD700"></span>
+      <!-- DRESS CODE -->
+      <section class="section dress reveal">
+        <div class="card dark card--soft">
+          <h2 class="section-title gold">Código de Vestimenta</h2>
+          <p class="dress-big">Formal Gala</p>
+          <div class="divider small gold">
+            <span></span><i>❦</i><span></span>
+          </div>
+          <p class="dress-note">
+            Ellas: Vestido largo o corto<br />Ellos: Traje elegante o saco (con
+            o sin corbata.) <br />Colores reservados para la quinceañera<br /><em
+              >(No usar)</em
+            >
+          </p>
+          <ul
+            class="dress-swatches"
+            aria-label="Colores reservados: naranja, rosa pastel, plateado, rosa chicle, rosa empolvado y dorado"
+          >
+            <li>
+              <span style="--c: #fc8461" aria-hidden="true"></span
+              ><small>Naranja</small>
+            </li>
+            <li>
+              <span style="--c: #fec3e1" aria-hidden="true"></span
+              ><small>Rosa pastel</small>
+            </li>
+            <li>
+              <span style="--c: #868686" aria-hidden="true"></span
+              ><small>Plateado</small>
+            </li>
+            <li>
+              <span style="--c: #ffa9d0" aria-hidden="true"></span
+              ><small>Rosa chicle</small>
+            </li>
+            <li>
+              <span style="--c: #e0a7ae" aria-hidden="true"></span
+              ><small>Rosa empolvado</small>
+            </li>
+            <li>
+              <span style="--c: #dda13f" aria-hidden="true"></span
+              ><small>Dorado</small>
+            </li>
+          </ul>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- GALERÍA: oculta hasta tener fotos reales. Para activarla, quita `hidden` y agrega <button class="g-item"><img src="images/foto1.jpg" ...></button> -->
-    <section class="section gallery reveal" hidden>
-      <div class="card">
-        <h2 class="section-title">Mi Galería</h2>
-        <p class="section-sub">Un adelanto de mi sesión — toca para ampliar</p>
-        <div class="divider small"><span></span><i>❦</i><span></span></div>
-        <div class="gallery-grid">
-          <button type="button" class="g-item"><img src="images/ana_victoria.jpeg" alt="Ana Victoria — sesión" loading="lazy" decoding="async" /></button>
+      <!-- GALERÍA: oculta hasta tener fotos reales. Para activarla, quita `hidden` y agrega <button class="g-item"><img src="images/foto1.jpg" ...></button> -->
+      <section class="section gallery reveal" hidden>
+        <div class="card">
+          <h2 class="section-title">Mi Galería</h2>
+          <p class="section-sub">
+            Un adelanto de mi sesión — toca para ampliar
+          </p>
+          <div class="divider small"><span></span><i>❦</i><span></span></div>
+          <div class="gallery-grid">
+            <button type="button" class="g-item">
+              <img
+                src="images/ana_victoria.jpeg"
+                alt="Ana Victoria — sesión"
+                loading="lazy"
+                decoding="async"
+              />
+            </button>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- REGALOS -->
-    <section class="section gifts reveal">
-      <div class="card dark">
-        <h2 class="section-title gold">Mesa de Regalos</h2>
-        <div class="gift-icon">✦</div>
-        <p class="gift-text">Tu presencia es mi mejor regalo.<br />Si deseas obsequiarme algo más,<br />habrá <strong>lluvia de sobres</strong> en el salón.</p>
-        <div class="divider small gold"><span></span><i>❦</i><span></span></div>
-        <p class="muted light">Con amor, Ana Victoria</p>
-      </div>
-    </section>
+      <!-- REGALOS -->
+      <section class="section gifts reveal">
+        <div class="card dark card--soft">
+          <h2 class="section-title gold">Mesa de Regalos</h2>
+          <div class="gift-icon">✦</div>
+          <p class="gift-text">
+            Tu presencia es mi mejor regalo.<br />Si deseas obsequiarme algo
+            más,<br />habrá <strong>lluvia de sobres</strong> en el salón.
+          </p>
+          <div class="divider small gold">
+            <span></span><i>❦</i><span></span>
+          </div>
+          <p class="muted light">Con amor, Ana Victoria</p>
+        </div>
+      </section>
 
-    <!-- RSVP -->
-    <section class="section rsvp reveal">
-      <div class="card rsvp-card">
-        <h2 class="section-title">Confirma tu Asistencia</h2>
-        <p class="section-sub">Por favor confirma antes del <strong>31 de Octubre de 2026</strong></p>
-        <div class="divider small"><span></span><i>❦</i><span></span></div>
-        <a id="waBtn" class="btn btn-whatsapp" target="_blank" rel="noopener" href="https://wa.me/584123023075?text=Hola%2C%20confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Ana%20Victoria%20%F0%9F%8C%B9%20Mi%20nombre%20es%3A%20___%20y%20somos%3A%20___%20personas.">
-          Confirmar por WhatsApp
-        </a>
-        <p class="muted">Confirma al +58 412 302 3075<br />Te esperamos con alegría.</p>
-      </div>
-    </section>
+      <!-- RSVP -->
+      <section class="section rsvp reveal">
+        <div class="card rsvp-card">
+          <h2 class="section-title">Confirma tu Asistencia</h2>
+          <p class="section-sub">
+            Por favor confirma antes del <strong>31 de Octubre de 2026</strong>
+          </p>
+          <div class="divider small"><span></span><i>❦</i><span></span></div>
+          <a
+            id="waBtn"
+            class="btn btn-whatsapp"
+            target="_blank"
+            rel="noopener"
+            href="https://wa.me/584123023075?text=Hola%2C%20confirmo%20mi%20asistencia%20a%20los%20XV%20de%20Ana%20Victoria%20%F0%9F%8C%B9%20Mi%20nombre%20es%3A%20___%20y%20somos%3A%20___%20personas."
+          >
+            Confirmar por WhatsApp
+          </a>
+          <p class="muted">
+            Confirma al +58 412 302 3075<br />Te esperamos con alegría.
+          </p>
+        </div>
+      </section>
 
-    <footer class="footer">
-      <div class="footer-mono">A · V</div>
-      <p class="footer-name">Ana Victoria · Mis XV Años</p>
-      <p class="footer-date">14 · 11 · 2026 — Aguasanta, Cabudare</p>
-      <p class="footer-made">Hecha con amor · estilo victoriano</p>
-    </footer>
-  </main>
+      <footer class="footer">
+        <div class="footer-mono">A · V</div>
+        <p class="footer-name">Ana Victoria · Mis XV Años</p>
+        <p class="footer-date">14 · 11 · 2026 — Aguasanta, Cabudare</p>
+        <p class="footer-made">Hecha con amor · estilo victoriano</p>
+      </footer>
+    </main>
 
-  <!-- Lightbox -->
-  <div id="lightbox" class="lightbox hidden" role="dialog" aria-modal="true" aria-label="Foto ampliada">
-    <button id="lbClose" class="lb-close" aria-label="Cerrar">×</button>
-    <img id="lbImg" src="" alt="Foto ampliada" />
-  </div>
+    <!-- Lightbox -->
+    <div
+      id="lightbox"
+      class="lightbox hidden"
+      role="dialog"
+      aria-modal="true"
+      aria-label="Foto ampliada"
+    >
+      <button id="lbClose" class="lb-close" aria-label="Cerrar">×</button>
+      <img id="lbImg" src="" alt="Foto ampliada" />
+    </div>
 
-  <!-- Audio opcional: pon tu vals.mp3 en /music/vals.mp3 -->
-  <audio id="valsAudio" loop preload="none">
-    <source src="music/vals.mp3" type="audio/mpeg" />
-  </audio>
+    <!-- Audio opcional: pon tu vals.mp3 en /music/vals.mp3 -->
+    <audio id="valsAudio" loop preload="none">
+      <source src="music/vals.mp3" type="audio/mpeg" />
+    </audio>
 
-  <script src="script.js"></script>
-</body>
+    <script src="script.js"></script>
+  </body>
 </html>
